@@ -37,6 +37,8 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 
+  config.include Capybara::DSL
+
   config.fuubar_progress_bar_options = {
     :format => "%a %b\u{15E7}%i %p%% %t",
     :progress_mark  => ' ',
