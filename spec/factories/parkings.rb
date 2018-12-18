@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :parking do
-    coord { "" }
-    curb_id { 1 }
+    coord { "10,20" }
+    sequence(:curb_id) {|n| "curb #{n}"}
     time_out { "2018-12-18 10:46:42" }
-    legal { false }
-    street_name { "MyString" }
-    start_cross_street { "MyString" }
-    end_cross_street { "MyString" }
-    side_of_street { "MyString" }
-    user { nil }
+    legal { true }
+    sequence(:street_name) {|n| "Street #{n}" }
+    sequence(:start_cross_street) {|n| "Start cross street #{n}" }
+    sequence(:end_cross_street) {|n| "End cross street #{n}" }
+    side_of_street { "SE" }
+    user
   end
 end

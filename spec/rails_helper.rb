@@ -43,6 +43,10 @@ RSpec.configure do |config|
     :remainder_mark => "\u{FF65}"
   }
 
+  config.include FactoryBot::Syntax::Methods
+  config.after(:each) do
+    FactoryBot.reload
+  end
 end
 
 
