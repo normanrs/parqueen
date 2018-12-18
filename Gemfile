@@ -24,6 +24,8 @@ group :development, :test do
   gem 'launchy'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'fuubar'
+  gem 'simplecov'
 end
 
 group :development do
