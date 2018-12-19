@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :parking do
-    coord { "10,20" }
     sequence(:curb_id) {|n| "curb #{n}"}
     time_out { "2018-12-18 10:46:42" }
     legal { true }

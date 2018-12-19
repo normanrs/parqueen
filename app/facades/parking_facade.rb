@@ -20,6 +20,10 @@ class ParkingFacade
     parking.end_cross_street
   end
 
+  def parking_legal
+    parking.legal
+  end
+
 private
 
   def parking
