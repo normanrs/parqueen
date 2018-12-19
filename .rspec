@@ -1,5 +1,4 @@
 --require spec_helper
 --format=documentation
 --order=random
---format Fuubar
---color
+
