@@ -10,4 +10,16 @@ RSpec.describe User, type: :model do
   describe 'relationships' do
     it {should have_many(:parkings)}
   end
+
+  it 'creates itself from an oauth hash' do
+    auth = {uid: "1234",info: {email: "johnsmith@example.com",name: "John Smith"}, credentials: {token: "4321"}}
+
+    new_user = User.update_or_create(auth)
+
+    expect(new_user.uid).to eq('1234')
+    expect(new_user.email).to eq('johnsmith@example.com')
+    expect(new_user.name).to eq('John Smith')
+    expect(new_user.google_token).to eq('4321')
+
+  end
 end
