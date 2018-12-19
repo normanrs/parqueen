@@ -3,9 +3,8 @@ rbenv:
  - 2.4.1
 
 services:
- - postgresql
+  - postgresql
 
- before_script:
+before_script:
   - bundle exec rake db:{drop,create,migrate,seed}
 
-script: bundle exec rspec
