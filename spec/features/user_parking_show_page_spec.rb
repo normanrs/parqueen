@@ -2,10 +2,11 @@ require 'rails_helper'
 
 describe 'when a user creates a parking show page by button press' do
   it 'if parking is legal page displays location info' do
+    params = {:location => "47.539245692589986,-122.29951946605416"}
     parking_1 = create(:parking)
-    visit '/parking'
+    visit parking_path(params)
 
-    expect(current_path).to equal(parking_path)
+    expect(current_path).to eq(parking_path)
     expect(page).to have_content("YOU PARKED YOUR CHARIOT LEGALLY!")
     expect(page).to have_content(parking_1.street_name)
     expect(page).to have_content(parking_1.start_cross_street)
