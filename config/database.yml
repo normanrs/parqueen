@@ -83,5 +83,5 @@ production:
   database: parqueen_production
   username: parqueen
   password: <%= ENV['PARQUEEN_DATABASE_PASSWORD'] %>
-  host: <%= ENV['PARQUEEN_DATABASE_HOSTNAME'] %>
-  port: <%= ENV['PARQUEEN_DATABASE_PORT'] %>
+  # host: <%= ENV['PARQUEEN_DATABASE_HOSTNAME'] %>
+  # port: <%= ENV['PARQUEEN_DATABASE_PORT'] %>
