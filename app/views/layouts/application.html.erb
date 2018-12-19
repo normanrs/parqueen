@@ -13,7 +13,7 @@
     <%= yield %>
   </body>
   <script type="text/javascript">
-    var x = document.getElementById("location");
+    var x = document.getElementById("demo");
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -22,10 +22,10 @@
         x.innerHTML = "Geolocation is not supported by this browser.";
       }
     }
-
     function showPosition(position) {
-      x.innerHTML =  position.coords.latitude + ',' + position.coords.longitude;
+      var loc = position.coords.latitude + ',' + position.coords.longitude;
+      window.location.href=`/parking?location=${loc}`;
     }
-    // getLocation();
-  </script>
+    // redirect here via javascript
+    </script>
 </html>

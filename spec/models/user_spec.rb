@@ -9,10 +9,6 @@ RSpec.describe User, type: :model do
     it {should validate_presence_of(:name)}
   end
 
-  describe 'relationships' do
-    it {should have_many(:parkings)}
-  end
-
   it 'creates itself from an oauth hash' do
     auth = {uid: "1234",info: {email: "johnsmith@example.com",name: "John Smith"}, credentials: {token: "4321"}}
 
