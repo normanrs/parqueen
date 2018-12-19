@@ -40,6 +40,10 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
 
+  config.include FactoryBot::Syntax::Methods
+  config.after(:each) do
+    FactoryBot.reload
+  end
 end
 
 
