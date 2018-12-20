@@ -16,7 +16,7 @@
             height: 50%;
             width: 50%;
             margin-left: auto;
-            margin-right: auto; 
+            margin-right: auto;
           }
           /* Optional: Makes the sample page fill the window. */
           html, body {
@@ -86,8 +86,12 @@
         }
       }
       function showPosition(position) {
-        var loc = position.coords.latitude + ',' + position.coords.longitude;
-        window.location.href=`/parking?location=${loc}`;
+        var key = "<%= ENV["COORD_TOKEN"] %>";
+        var lat = "37.802756844713855";
+        var lon = "-122.40579354398695";
+        var rad = 0.001
+        var url = "https://api.coord.co/v1/search/curbs/bylocation/time_rules?access_key=" + key + "&latitude="+ lat + "&longitude=" + lon + "&radius_km=" + rad;
+        fetch(url).then(response => response.json()).then((response) => console.log(response));
       }
     </script>
 </html>
