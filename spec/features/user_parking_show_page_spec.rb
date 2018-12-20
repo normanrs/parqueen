@@ -4,6 +4,7 @@ describe 'when a user creates a parking show page by button press' do
   it 'if parking is legal page displays location info' do
     params = {:location => "37.802756844713855,-122.40579354398695"}
     visit parking_path(params)
+    binding.pry
 
     expect(current_path).to eq(parking_path)
     expect(page).to have_content("YOU PARKED YOUR CHARIOT LEGALLY!")

@@ -1,10 +1,10 @@
 language: ruby
 rbenv:
- - 2.4.1
-
+- 2.4.1
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - bundle exec rake db:{drop,create,migrate,seed}
-
+- bundle exec rake db:{drop,create,migrate,seed}
+env:
+  matrix:
+    secure: VVQWaSZsC+61RcbOb0eO3n+2BGV+XNZdDWn8KGs72HTkBVsyJ8W3abkdk8ZIQVuRYM+UrlBg94DQR0dzkRhSfKtJcua4h17mU0tPsf/ah1K4cDcn1d3rtDuVAL7Mif38uh4hpDBVYxNkSpm4EdBc+ng8ujYDbOVobDXYsWVFkI5+bnq3uFbuo2kheecYwZk0ZgrdRBtzbe9o77cGm6yo4SGGs8vRjBkOz6lReO6W+DMJCnoQhNcul4ZeT1BWHCjAEXZdyDe06aBSIfLvVbKj9KDv/jdKFonH0Z4tbUnyEikmd/lHCHQc9Z0Xqldu65vo3XqO2jFsIWoAK/TUSBJI7T7O+dMiVpTOdi1nfcXXzRJvo9D6R45ApLwpRWtVAWwQSl0VuonB6my6PQnSd/TkMD1eW8BA7N8EsNoak5V6NkAXswjJ2jtpsLKPaB62vyBbfNgFknpOfp/A3E/68Zh/DjJCHB6yFUP7q8B1cQ+m4x55afWRFNFiqHg4jTLB6t1qQ2ktZDRDLHo076E8AAOg20MUszmduWDldaBEILrUgouwM/NDBqOjkoQC63T5g9HgOQZV2IBm7tAL7EqcV2C9EYED4YfYFz4JBrG80aZ+Twlg5MJuQ+bZaVFAESsP5hYJS6dHbQB4gOi8n9CYTYaiqC19AlTqj8c2guLp7uhJMVk=

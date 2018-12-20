@@ -5,7 +5,7 @@ class CoordService
 	end
 
 	def get_parking
-	  json_data = to_json("/v1/search/curbs/bylocation/time_rules")
+		json_data = to_json("/v1/search/curbs/bylocation/time_rules")
 		json_data[:features].first
 	end
 
