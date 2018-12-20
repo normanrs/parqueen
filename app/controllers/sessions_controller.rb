@@ -6,6 +6,11 @@ class SessionsController <ApplicationController
     redirect_to home_path
   end
 
+  def destroy
+  session[:id] = nil
+    redirect_to root_path
+  end
+
   def auth_hash
     request.env["omniauth.auth"]
   end
