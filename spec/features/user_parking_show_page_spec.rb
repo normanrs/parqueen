@@ -11,8 +11,18 @@ describe 'when a user creates a parking show page by button press' do
     expect(page).to have_content("DEAD END")
     expect(page).to have_content("Lombard Street")
     expect(page).to have_content("NE")
-    # expect(page).to have_button("Cancel Parking")
+  end
 
+  it 'if parking is not legal page displays location info' do
+    params = {:location => "37.79974763215206,-122.40737978313376"}
+    visit parking_path(params)
+
+    expect(current_path).to eq(parking_path)
+    expect(page).to have_content("YOU CANNOT LEGALLY PARK HERE!")
+    expect(page).to have_content("Grant Avenue")
+    expect(page).to have_content("Green Street")
+    expect(page).to have_content("Union Street")
+    expect(page).to have_content("E")
   end
 
 end
