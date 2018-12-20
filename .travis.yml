@@ -1,4 +1,6 @@
 language: ruby
+cache: 
+- bundler
 rbenv:
 - 2.4.1
 services:
