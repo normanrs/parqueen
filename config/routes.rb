@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get '/home', to: 'home#show'
   get '/parking', to: "parking#show", as: 'parking'
+  get '/logout', to: 'sessions#destroy'
 end
