@@ -1,57 +1,57 @@
-<div class="container">
-  <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  <span class="glyphicon glyphicon-menu-hamburger"></span>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="<%= logout_path %>">Log Out</a><br/>
-    <a class="dropdown-item" href="">Logged in as <%=@user.name%></a>
-  </div>
-</div>
-  <h1 align="center">ParQueen</h1>
-</div>
-<br>
-<script>
-  var map, infoWindow;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 20
-    });
-    infoWindow = new google.maps.InfoWindow;
+    <div class="container">
+      <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="<%= logout_path %>">Log Out</a><br/>
+        <a class="dropdown-item" href="">Logged in as <%=@user.name%></a>
+      </div>
+    </div>
+      <h1 align="center">ParQueen</h1>
+    </div>
+    <br>
+    <script>
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 20
+        });
+        infoWindow = new google.maps.InfoWindow;
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
 
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
-        map.setCenter(pos);
-      }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-    } else {
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  }
-
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-                          'Error: The Geolocation service failed.' :
-                          'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
-  }
-</script>
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap">
-</script>
-<div id="map"></div>
-<br>
-<p align="center"><button  onclick="getLocation()">Park Here</button></p>
-<br>
-<div id="spot_info"></div>
+      }
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap">
+    </script>
+    <div id="map"></div>
+    <br>
+    <p align="center"><button  onclick="getLocation()">Park Here</button></p>
+    <br>
+    <div id="spot_info"></div>
