@@ -87,13 +87,28 @@
       }
       function showPosition(position) {
         var key = "<%= ENV["COORD_TOKEN"] %>";
-        var lat = "37.802756844713855";
-        var lon = "-122.40579354398695";
+        var lat = "39.7507611";
+        var lon = "-104.99674329999999";
         var rad = 0.001
         var url = "https://api.coord.co/v1/search/curbs/bylocation/time_rules?access_key=" + key + "&latitude="+ lat + "&longitude=" + lon + "&radius_km=" + rad;
-        fetch(url).then(response => response.json()).then((response) => console.log(response['features'][0]['properties']));
+        fetch(url).then(response => response.json()).then((response) => {this.printSpot(response)});}
+
+      function printSpot(response) {
+        if (response['no_curbs_reason']) {
+          document.getElementById("spot_info").innerHTML = (response['no_curbs_reason'])
+        }
+        else if (response['features'][0]['properties']['uses']['use'] === 'park') {
+          document.getElementById("spot_info").innerHTML = "You parked on the "
+          + (response['features'][0]['properties']['metadata']['side_of_street'])
+          + " side of "
+          + (response['features'][0]['properties']['metadata']['street_name'])
+          + " between "
+          + (response['features'][0]['properties']['metadata']['start_street_name'])
+          + " and "
+          + (response['features'][0]['properties']['metadata']['end_street_name'])}
+        else (response){
+          document.getElementById("spot_info").innerHTML = 'YOU CANNOT LEGALLY PARK HERE!';
+        }
       }
     </script>
 </html>
-
-.then(function (response){return response.json();}).then(function (json){console.log(json);});
