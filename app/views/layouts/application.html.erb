@@ -91,9 +91,15 @@
         var lon = "-122.40579354398695";
         var rad = 0.001
         var url = "https://api.coord.co/v1/search/curbs/bylocation/time_rules?access_key=" + key + "&latitude="+ lat + "&longitude=" + lon + "&radius_km=" + rad;
-        fetch(url).then(response => response.json()).then((response) => console.log(response['features'][0]['properties']));
+        fetch(url).then(response => response.json()).then((response) => document.getElementById("spot_info").innerHTML = "You parked on the "
+        + (response['features'][0]['properties']['metadata']['side_of_street'])
+        + " side of "
+        + (response['features'][0]['properties']['metadata']['street_name'])
+        + " between "
+        + (response['features'][0]['properties']['metadata']['start_street_name'])
+        + " and "
+        + (response['features'][0]['properties']['metadata']['end_street_name'])
+        );
       }
     </script>
 </html>
-
-.then(function (response){return response.json();}).then(function (json){console.log(json);});
