@@ -1,0 +1,9 @@
+<h3> Hello, <%=@user.name%>! To receive notifications when your parking is about to expire, please provide your phone number. </h3>
+<%= form_for @user do |f| %>
+<%= f.label :phone_number %>
+<%= f.text_field :phone_number %>
+<%= f.submit "Save My Number" %>
+<%= f.submit "Opt Out Of Notifications" %>
+<% end %>
+<br>
+<br>
