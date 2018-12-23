@@ -14,7 +14,7 @@ require 'rails_helper'
       click_link "Log in with Google"
 
       expect(page).to have_content('ParQueen')
-      expect(page).to have_content('Logged in as John Smith')
+      expect(page).to have_content('John Smith')
       expect(current_path).to eq('/home')
     end
   end
