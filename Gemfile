@@ -15,6 +15,9 @@ gem 'faraday'
 gem 'figaro'
 gem 'omniauth-google-oauth2'
 gem 'newrelic_rpm'
+gem 'twilio-ruby'
+gem 'sidekiq'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -26,6 +29,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'simplecov'
+  gem 'daemons'
 end
 
 group :development do
