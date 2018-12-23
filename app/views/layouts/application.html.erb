@@ -7,75 +7,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-        <style>
-          /* Always set the map height explicitly to define the size of the div
-           * element that contains the map. */
-          #map {
-            height: 50%;
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-          }
-          /* Optional: Makes the sample page fill the window. */
-          html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-          }
-        </style>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 50%;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
-
   <body>
-      <script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
-        var map, infoWindow;
-        function initMap() {
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 20
-          });
-          infoWindow = new google.maps.InfoWindow;
-
-          // Try HTML5 geolocation.
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-              var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-              };
-
-              infoWindow.setPosition(pos);
-              infoWindow.setContent('Location found.');
-              infoWindow.open(map);
-              map.setCenter(pos);
-            }, function() {
-              handleLocationError(true, infoWindow, map.getCenter());
-            });
-          } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-          }
-        }
-
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-          infoWindow.setPosition(pos);
-          infoWindow.setContent(browserHasGeolocation ?
-                                'Error: The Geolocation service failed.' :
-                                'Error: Your browser doesn\'t support geolocation.');
-          infoWindow.open(map);
-        }
-      </script>
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap">
-      </script>
-      <%=yield%>
-    </body>
+    <%=yield%>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
     <script type="text/javascript">
       function getLocation() {
         if (navigator.geolocation) {
@@ -87,9 +40,9 @@
       }
       function showPosition(position) {
         var key = "<%= ENV["COORD_TOKEN"] %>";
-        var lat = "39.7507611";
-        var lon = "-104.99674329999999";
-        var rad = 0.001
+        var lat = position['coords']['latitude'];
+        var lon = position['coords']['longitude'];
+        var rad = 0.001;
         var url = "https://api.coord.co/v1/search/curbs/bylocation/time_rules?access_key=" + key + "&latitude="+ lat + "&longitude=" + lon + "&radius_km=" + rad;
         fetch(url).then(response => response.json()).then((response) => {this.printSpot(response)});}
 
@@ -106,7 +59,7 @@
           + (response['features'][0]['properties']['metadata']['start_street_name'])
           + " and "
           + (response['features'][0]['properties']['metadata']['end_street_name'])}
-        else (response){
+        else if (response){
           document.getElementById("spot_info").innerHTML = 'YOU CANNOT LEGALLY PARK HERE!';
         }
       }
