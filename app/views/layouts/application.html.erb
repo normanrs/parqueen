@@ -42,6 +42,7 @@
         var key = "<%= ENV["COORD_TOKEN"] %>";
         var lat = position['coords']['latitude'];
         var lon = position['coords']['longitude'];
+        sessionStorage.setItem('coord', (lat + "," + lon));
         var rad = 0.001;
         var url = "https://api.coord.co/v1/search/curbs/bylocation/time_rules?access_key=" + key + "&latitude="+ lat + "&longitude=" + lon + "&radius_km=" + rad;
         fetch(url).then(response => response.json()).then((response) => {this.printSpot(response)});
@@ -52,19 +53,35 @@
           document.getElementById("spot_info").innerHTML = (response['no_curbs_reason'])
         }
         else if (response['features'][0]['properties']['uses']['use'] === 'park') {
-          sessionStorage.setItem('parking_side', (response['features'][0]['properties']['metadata']['side_of_street']));
+          sessionStorage.setItem('side_of_street', (response['features'][0]['properties']['metadata']['side_of_street']));
           sessionStorage.setItem('street_name', (response['features'][0]['properties']['metadata']['street_name']));
-          sessionStorage.setItem('start_name', (response['features'][0]['properties']['metadata']['start_street_name']));
-          sessionStorage.setItem('end_name', (response['features'][0]['properties']['metadata']['end_street_name']));
+          sessionStorage.setItem('start_cross_street', (response['features'][0]['properties']['metadata']['start_street_name']));
+          sessionStorage.setItem('end_cross_street', (response['features'][0]['properties']['metadata']['end_street_name']));
+          sessionStorage.setItem('curb_id', (response['features'][0]['properties']['metadata']['curb_id']));
           document.getElementById("spot_info").innerHTML = "You parked on the "
-          + sessionStorage.getItem('parking_side') + " side of "
+          + sessionStorage.getItem('side_of_street') + " side of "
           + sessionStorage.getItem('street_name') + " between "
-          + sessionStorage.getItem('start_name') + " and "
-          + sessionStorage.getItem('end_name');
+          + sessionStorage.getItem('start_cross_street') + " and "
+          + sessionStorage.getItem('end_cross_street');
         }
         else if (response){
           document.getElementById("spot_info").innerHTML = 'YOU CANNOT LEGALLY PARK HERE!';
         }
       }
+
+      function saveParking() {
+        var path = Routes.parking_path({format: "json"});
+        var url = path + "?coord="+ sessionStorage.getItem('coord')
+                       + "&curb_id"+ sessionStorage.getItem('curb_id')
+                       + "&street_name"+ sessionStorage.getItem('street_name')
+                       + "&start_cross_street"+ sessionStorage.getItem('start_cross_street')
+                       + "&end_cross_street"+ sessionStorage.getItem('end_cross_street')
+                       + "&side_of_street"+ sessionStorage.getItem('side_of_street');
+        fetch(url, {method: 'post',headers: {
+                   'Content-Type': 'application/json',
+                   'X-CSRF-Token': Rails.csrfToken()
+                                            }
+                    })
+        }
     </script>
 </html>

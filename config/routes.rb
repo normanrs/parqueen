@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get '/home', to: 'home#show'
   get '/logout', to: 'sessions#destroy'
 
-  post "/parking" => "parkings#create", :as => :create_parking
+  post "/parking" => "parkings#create", :as => :parking
 
 end
