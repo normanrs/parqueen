@@ -40,8 +40,8 @@
       }
       function showPosition(position) {
         var key = "<%= ENV["COORD_TOKEN"] %>";
-        var lat = position['coords']['latitude'];
-        var lon = position['coords']['longitude'];
+        var lat = 37.781636909214626;
+        var lon = -122.39413124711574;
         sessionStorage.setItem('coord', (lat + "," + lon));
         var rad = 0.001;
         var url = "https://api.coord.co/v1/search/curbs/bylocation/time_rules?access_key=" + key + "&latitude="+ lat + "&longitude=" + lon + "&radius_km=" + rad;
@@ -70,18 +70,18 @@
       }
 
       function saveParking() {
-        var path = Routes.parking_path({format: "json"});
+        var path = "/parking";
         var url = path + "?coord="+ sessionStorage.getItem('coord')
-                       + "&curb_id"+ sessionStorage.getItem('curb_id')
-                       + "&street_name"+ sessionStorage.getItem('street_name')
-                       + "&start_cross_street"+ sessionStorage.getItem('start_cross_street')
-                       + "&end_cross_street"+ sessionStorage.getItem('end_cross_street')
-                       + "&side_of_street"+ sessionStorage.getItem('side_of_street');
+                       + "&street_name="+ sessionStorage.getItem('street_name')
+                       + "&start_cross_street="+ sessionStorage.getItem('start_cross_street')
+                       + "&end_cross_street="+ sessionStorage.getItem('end_cross_street')
+                       + "&side_of_street="+ sessionStorage.getItem('side_of_street');
         fetch(url, {method: 'post',headers: {
                    'Content-Type': 'application/json',
                    'X-CSRF-Token': Rails.csrfToken()
                                             }
                     })
+        document.getElementById("saved").innerHTML = 'Parking spot saved.';
         }
     </script>
 </html>

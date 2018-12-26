@@ -15,7 +15,6 @@ gem 'faraday'
 gem 'figaro'
 gem 'omniauth-google-oauth2'
 gem 'newrelic_rpm'
-gem "js-routes"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
