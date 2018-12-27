@@ -40,8 +40,8 @@
       }
       function showPosition(position) {
         var key = "<%= ENV["COORD_TOKEN"] %>";
-        var lat = 37.781636909214626;
-        var lon = -122.39413124711574;
+        var lat = position['coords']['latitude'];
+        var lon = position['coords']['longitude'];
         sessionStorage.setItem('coord', (lat + "," + lon));
         var rad = 0.001;
         var url = "https://api.coord.co/v1/search/curbs/bylocation/time_rules?access_key=" + key + "&latitude="+ lat + "&longitude=" + lon + "&radius_km=" + rad;
