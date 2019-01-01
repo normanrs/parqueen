@@ -5,11 +5,19 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="<%= logout_path %>">Log Out</a><br/>
-          <a class="dropdown-item" href="">Logged in as <%=@user.name%></a>
+          <a class="dropdown-item" href="">Logged in as <%=@user.name%></a><br/>
+          <% if @user.contact == true %>
+            <a class="dropdown-item" href="<%= notifications_path(@user) %>">Disable Notifications</a><br/>
+          <% elsif @user.contact == false %>
+            <a class="dropdown-item" href="<%= notifications_path(@user)%>">Enable Notifications</a><br/>
+          <% end %>
         </div>
       </div>
       <h1 align="center">ParQueen</h1>
     </div>
+    <% if @user.phone_number == nil && @user.contact == true %>
+      <%= render "phone/new.html.erb" %>
+    <% else  %>
     <br>
     <script>
       var map, infoWindow;
@@ -62,3 +70,7 @@
       </div>
       </div>
     </div>
+    <% if @user.contact == true && @user.phone_number != nil %>
+      <%= render "texts/new.html.erb" %>
+    <% end %>
+  <% end %>

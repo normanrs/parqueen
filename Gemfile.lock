@@ -68,10 +68,17 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.4)
+    connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
+    daemons (1.3.1)
     database_cleaner (1.7.0)
+    delayed_job (4.1.5)
+      activesupport (>= 3.0, < 5.3)
+    delayed_job_active_record (4.1.3)
+      activerecord (>= 3.0, < 5.3)
+      delayed_job (>= 3.0, < 5)
     diff-lcs (1.3)
     docile (1.3.1)
     erubi (1.7.1)
@@ -151,6 +158,8 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
+    rack-protection (2.0.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.2)
@@ -181,6 +190,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redis (4.1.0)
     regexp_parser (1.3.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
@@ -214,6 +224,10 @@ GEM
       tilt (>= 1.1, < 3)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
+    sidekiq (5.2.3)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -229,6 +243,10 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
+    twilio-ruby (5.18.0)
+      faraday (~> 0.9)
+      jwt (>= 1.5, <= 2.5)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
@@ -258,7 +276,9 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.2)
+  daemons
   database_cleaner
+  delayed_job_active_record
   factory_bot_rails
   faraday
   figaro
@@ -275,7 +295,9 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   shoulda-matchers
+  sidekiq
   simplecov
+  twilio-ruby
   tzinfo-data
   uglifier (>= 1.3.0)
   vcr
