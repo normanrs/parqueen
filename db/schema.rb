@@ -32,9 +32,7 @@ ActiveRecord::Schema.define(version: 2018_12_23_031343) do
 
   create_table "parkings", force: :cascade do |t|
     t.point "coord"
-    t.integer "curb_id"
     t.time "time_out"
-    t.boolean "legal"
     t.string "street_name"
     t.string "start_cross_street"
     t.string "end_cross_street"
