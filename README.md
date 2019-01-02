@@ -32,13 +32,12 @@ Open terminal and run these commands:
 * bundle update
 * figaro install
 * in your config/applicaion.yml file add your keys with these names:
-  COORD_TOKEN:
-  GOOGLE_CLIENT_ID:
-  GOOGLE_CLIENT_SECRET:
-  GOOGLE_API_KEY:
-  TWILIO_ACCOUNT_SID:
-  TWILIO_AUTH_TOKEN:
-  TWILIO_PHONE_NUMBER:
+  * COORD_TOKEN:GOOGLE_CLIENT_ID:
+  * GOOGLE_CLIENT_SECRET:
+  * GOOGLE_API_KEY:
+  * TWILIO_ACCOUNT_SID:
+  * TWILIO_AUTH_TOKEN:
+  * TWILIO_PHONE_NUMBER:
 * rails db:{create,migrate,seed}
 * rails s
 
