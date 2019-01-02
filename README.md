@@ -1,6 +1,6 @@
 # Parqueen
 
-We have built an online parking app that allows a user to check if their current location is a valid place to park or now.  Users can supply their phone numbers and set intervals to receive a text message to warn them before their time expires.
+We have built an online parking app that allows a user to check if their current location is a valid place to park or not.  Users can supply their phone numbers and set intervals to receive a text message to warn them before their time expires.
 
 ## Getting Started
 
