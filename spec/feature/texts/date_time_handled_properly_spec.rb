@@ -29,4 +29,14 @@ describe 'when user parks' do
     expect(twilio.initial_message).to eq("John Smith, thank you for using ParQueen. We will notify you fifteen minutes before your parking expires.")
     expect(twilio.expiration_message).to eq("Your parking will expire in 15 minutes. You have until #{time} to move your vehicle.")
   end
+
+  it 'redirects to home page' do
+    user = User.create(uid: '1234', google_token: '4321', email: 'example@gmail.com', name: "John Smith", phone_number: 7173951239, contact: true)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit '/home'
+
+    click_on "Set Expiration"
+
+    expect(current_path).to eq('/home')
+  end
 end
