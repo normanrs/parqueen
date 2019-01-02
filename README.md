@@ -20,9 +20,25 @@ If you have not installed rails, in terminal run: gem install rails -v 5.2 in th
 
 ### Installing
 
+This app require a keys.
+
+You can sign up for a Google API key here: https://cloud.google.com/maps-platform/
+You can sign up for a Coord API key here: https://coord.co/docs
+You can sign up for a Twilio API key here: https://www.twilio.com/
+Follow these directions to create a client id and secret: https://developers.google.com/adwords/api/docs/guides/authentication
+
 Open terminal and run these commands:
 * bundle
 * bundle update
+* figaro install
+* in your config/applicaion.yml file add your keys with these names:
+  COORD_TOKEN:
+  GOOGLE_CLIENT_ID:
+  GOOGLE_CLIENT_SECRET:
+  GOOGLE_API_KEY:
+  TWILIO_ACCOUNT_SID:
+  TWILIO_AUTH_TOKEN:
+  TWILIO_PHONE_NUMBER:
 * rails db:{create,migrate,seed}
 * rails s
 
