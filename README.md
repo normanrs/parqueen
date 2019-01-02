@@ -20,7 +20,7 @@ If you have not installed rails, in terminal run: gem install rails -v 5.2 in th
 
 ### Installing
 
-This app require a keys.
+This app requires a few keys.
 
 You can sign up for a Google API key here: https://cloud.google.com/maps-platform/
 You can sign up for a Coord API key here: https://coord.co/docs
