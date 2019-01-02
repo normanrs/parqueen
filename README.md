@@ -38,12 +38,15 @@ A user can login to their app using a Google ID.
 Once logged in, a user can opt to enter their phone numbers to receive text message alerts when their parking is about to expire.
 
 A user will then see a map of their current location and have the option to park or save their current location.
+
 ![page with current location map](Map.png)
 
 If their current location is a legal parking spot, a message will be displayed telling the user where they have parked.
+
 ![legal parking spot](Legal.png)
 
 If their current location is not a legal parking spot, a message will be displayed telling the user that they cannot park in their current location.
+
 ![illegal parking spot](Illegal.png)
 
 
