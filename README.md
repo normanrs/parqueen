@@ -29,7 +29,8 @@ Open terminal and run these commands:
 Open up a web browser (preferably Chrome)
 
 Navigate to localhost:3000 (a landing page should be displayed) that asks you to sign in with google.
-![home page](login.png)
+
+![home page](Login.png)
 
 ## Running the tests
 
